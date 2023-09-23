@@ -82,7 +82,7 @@ export default function Playfield() {
         <strong>{score}</strong>
       </div>
 
-      <div className="border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-lg font-mono">
+      <div className="border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-mono">
         <progress
           className="progress"
           value={progressPercent}
