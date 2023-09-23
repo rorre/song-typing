@@ -7,6 +7,7 @@ import { calculateScore } from "../utils";
 const fontWidth = 13.2;
 export default function Playfield() {
   const {
+    audio,
     song: { song, lyrics },
     score,
     currentLyricsRow,
@@ -15,6 +16,7 @@ export default function Playfield() {
     incrementScore,
     isPlaying,
   } = useGameContext();
+  const [volume, setVolume] = useState(100);
   const [progress, setProgress] = useState("");
   const [finishTime, setFinishTime] = useState(0);
 
@@ -68,6 +70,10 @@ export default function Playfield() {
       )
       .every((x) => x == true) && setFinishTime(currentTime);
   }, [progress, currentLyric, currentTime]);
+
+  useEffect(() => {
+    audio.volume = volume / 100;
+  }, [audio, volume]);
 
   const timeRange = useMemo(
     () => currentLyric.endTime - currentLyric.startTime,
@@ -124,9 +130,25 @@ export default function Playfield() {
         </p>
       </div>
 
-      <div>
-        <button className="btn btn-primary" onClick={() => togglePlaying()}>
-          Start
+      <div className="flex flex-col w-full justify-between gap-4">
+        <div className="flex flex-row gap-4">
+          <p>Volume</p>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={volume}
+            className="range"
+            onChange={(e) => setVolume(e.target.valueAsNumber)}
+          />
+          <span>{volume}%</span>
+        </div>
+
+        <button
+          className={clsx("btn", isPlaying ? "btn-secondary" : "btn-primary")}
+          onClick={() => togglePlaying()}
+        >
+          {isPlaying ? "Pause" : "Start"}
         </button>
       </div>
     </div>

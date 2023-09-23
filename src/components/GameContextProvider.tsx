@@ -32,6 +32,7 @@ export default function GameContextProvider({
   return (
     <GameContext.Provider
       value={{
+        audio,
         song,
         currentLyricsRow,
         score,

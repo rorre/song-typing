@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { Song } from "../types";
 
 export interface GameData {
+  audio: HTMLAudioElement;
   song: Song;
   score: number;
   currentLyricsRow: number;
@@ -12,6 +13,7 @@ export interface GameData {
 }
 
 export const GameContext = createContext<GameData>({
+  audio: null as unknown as HTMLAudioElement,
   song: {
     song: "None",
     lyrics: [],
