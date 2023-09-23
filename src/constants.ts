@@ -116,8 +116,70 @@ export const LAGTRAIN: Song = {
     {
       startTime: 35986,
       endTime: 49047,
-      lyric: "Too lazy to finish lol",
+      lyric: "[INSTRUMENTAL]",
       ignore: true,
+    },
+    {
+      startTime: 49047,
+      endTime: 55578,
+      lyric: "yuugata to taikutsu no osasoi o kotowatte",
+    },
+    {
+      startTime: 55578,
+      endTime: 61700,
+      lyric: "hitorikiri rojiura wa kesshite isoganaide",
+    },
+    {
+      startTime: 61700,
+      endTime: 68231,
+      lyric: "hora oudan hodou mo matte kure to itteru",
+    },
+    {
+      startTime: 68231,
+      endTime: 75170,
+      lyric: "miharu machikado ga anata o hikitometeku",
+    },
+
+    {
+      startTime: 75170,
+      endTime: 78027,
+      lyric: "hanarebanare no machi o",
+    },
+    {
+      startTime: 78027,
+      endTime: 81700,
+      lyric: "tsunagu ressha wa itte shimatta ne",
+    },
+    {
+      startTime: 81700,
+      endTime: 84965,
+      lyric: "nakushita kotoba o shiranai nara",
+    },
+    {
+      startTime: 84965,
+      endTime: 88231,
+      lyric: "poketto de nigirishimete",
+    },
+
+    {
+      startTime: 88231,
+      endTime: 91088,
+      lyric: "agaita yume o sutete",
+    },
+    {
+      startTime: 91088,
+      endTime: 94761,
+      lyric: "yureru kyou wa nemutte gomakase",
+    },
+    {
+      startTime: 94761,
+      endTime: 98027,
+      lyric: "nakushita kotoba o shiranai nara",
+    },
+    {
+      startTime: 98027,
+      endTime: 101292,
+      lyric: "kakueki teisha ni norikonde",
     },
   ],
 };
