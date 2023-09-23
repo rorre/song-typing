@@ -20,10 +20,7 @@ export default function GameContextProvider({
 
   useInterval(() => {
     setCurrentTime(audio.currentTime * 1000 + OFFSET);
-    if (
-      lyrics[currentLyricsRow + 1].startTime <
-      audio.currentTime * 1000 + OFFSET
-    ) {
+    if (lyrics[currentLyricsRow].endTime < audio.currentTime * 1000 + OFFSET) {
       setLyricsRow(currentLyricsRow + 1);
     }
   }, 50);
