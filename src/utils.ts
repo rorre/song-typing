@@ -15,5 +15,9 @@ export function calculateScore(
     )
     .reduce((p, c) => p + c, 0 as number);
 
-  return rowScore + (timeLeft / timeRange) * 5 * expected.length;
+  return (
+    rowScore +
+    (timeLeft / timeRange) * 5 * expected.length -
+    5 * (written.length - expected.length)
+  );
 }
