@@ -4,6 +4,7 @@ import { useEventListener, useOnDepsChange } from "../hooks";
 import clsx from "clsx";
 import { calculateScore } from "../utils";
 
+const fontWidth = 13.2;
 export default function Playfield() {
   const {
     song: { song, lyrics },
@@ -82,16 +83,18 @@ export default function Playfield() {
         <strong>{score}</strong>
       </div>
 
-      <div className="border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-mono">
+      <div className="border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-mono relative">
         <progress
           className="progress"
           value={progressPercent}
           max="100"
         ></progress>
+
         <p className="text-gray-500 uppercase">
           {lyrics[currentLyricsRow + 1]?.lyric ?? ""}
         </p>
-        <p className="uppercase">
+
+        <p className="uppercase relative">
           {currentLyric.lyric.split("").map((char, idx) => (
             <span
               className={clsx(
@@ -111,6 +114,13 @@ export default function Playfield() {
             .map((char) => (
               <span className="text-red-500">{char}</span>
             ))}
+
+          <div
+            className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
+            style={{
+              left: progress.length * fontWidth + "px",
+            }}
+          />
         </p>
       </div>
 
