@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { useGameContext } from "./GameContext";
+import { useGameContext } from "../GameContext";
 
 interface TypingBoxProps extends React.HTMLProps<HTMLDivElement> {
   progress: string;

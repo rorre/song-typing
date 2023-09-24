@@ -2,9 +2,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGameContext } from "./GameContext";
 import { useEventListener, useOnDepsChange } from "../../hooks";
 import { calculateScore } from "../../utils";
-import PerformanceBox from "./PerformanceBox";
-import ControlBox from "./ControlBox";
-import TypingBox from "./TypingBox";
+import PerformanceBox from "./boxes/PerformanceBox";
+import ControlBox from "./boxes/ControlBox";
+import TypingBox from "./boxes/TypingBox";
 
 export default function Playfield() {
   const {

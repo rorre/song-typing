@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
-import { useGameContext } from "./GameContext";
+import { useGameContext } from "../GameContext";
 
 export default function ControlBox(props: React.HTMLProps<HTMLDivElement>) {
   const { className, ...rest } = props;

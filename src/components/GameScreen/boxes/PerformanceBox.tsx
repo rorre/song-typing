@@ -1,5 +1,5 @@
 import React from "react";
-import { useGameContext } from "./GameContext";
+import { useGameContext } from "../GameContext";
 import clsx from "clsx";
 
 export default function PerformanceBox(props: React.HTMLProps<HTMLDivElement>) {
