@@ -70,8 +70,7 @@ export default function Playfield() {
       setProgress((current) => current + key.toLowerCase());
     },
     [
-      currentLyric.ignore,
-      currentLyric.lyric,
+      currentLyric,
       isPlaying,
       performance.bestCombo,
       performance.combo,
