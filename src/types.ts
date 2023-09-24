@@ -6,7 +6,8 @@ export interface LyricData {
 }
 
 export interface Metadata {
-  song: string;
+  artist: string;
+  title: string;
   src: string;
   difficulty: number;
 }

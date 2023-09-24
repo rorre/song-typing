@@ -9,7 +9,7 @@ import TypingBox from "./boxes/TypingBox";
 export default function Playfield() {
   const {
     audio,
-    song: { song, lyrics },
+    song: { artist, title, lyrics },
     score,
     currentLyricsRow,
     currentTime,
@@ -134,7 +134,9 @@ export default function Playfield() {
   const songProgress = (currentTime / (audio.duration * 1000)) * 100;
   return (
     <div className="container max-w-4xl mx-auto flex flex-col items-center justify-center h-screen select-none gap-2">
-      <strong className="self-start">{song}</strong>
+      <strong className="self-start">
+        {artist} - {title}
+      </strong>
       <div className="flex flex-row justify-between w-full">
         <strong>
           {currentLyricsRow + 1}/{lyrics.length}

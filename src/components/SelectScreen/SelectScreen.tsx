@@ -12,20 +12,24 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
         {songs.map((song, idx) => (
           <div
             className="p-4 rounded-r-lg bg-base-200 cursor-pointer"
-            key={song.song}
+            key={song.artist + song.title}
             onClick={() => setSongId(idx)}
           >
-            <strong>{song.song}</strong>
+            <strong>
+              {song.artist} - {song.title}
+            </strong>
           </div>
         ))}
       </div>
 
-      <div className="flex flex-col gap-4 p-4 bg-base-200 items-center text-center w-64">
+      <div className="flex flex-col gap-4 p-4 bg-base-200 items-center text-center min-w-96 w-1/4">
         {selectedSong == null ? (
           "No song selected"
         ) : (
           <>
-            <strong>{selectedSong.song}</strong>
+            <strong>
+              {selectedSong.artist} - {selectedSong.title}
+            </strong>
             <span>Difficulty: {selectedSong.difficulty}</span>
 
             <Link

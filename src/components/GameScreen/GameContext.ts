@@ -29,7 +29,8 @@ export interface GameData {
 export const GameContext = createContext<GameData>({
   audio: null as unknown as HTMLAudioElement,
   song: {
-    song: "None",
+    artist: "",
+    title: "",
     lyrics: [],
     src: "",
     difficulty: 0,
