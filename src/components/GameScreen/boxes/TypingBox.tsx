@@ -37,7 +37,7 @@ export default function TypingBox(props: TypingBoxProps) {
         {lyrics[currentLyricsRow + 1]?.lyric ?? ""}&nbsp;
       </pre>
 
-      <div className="uppercase relative prose inline-block flex flex-row">
+      <div className="uppercase relative prose flex flex-row">
         {currentLyric.lyric.split("").map((char, idx) => (
           <pre
             key={"orig-" + idx}
