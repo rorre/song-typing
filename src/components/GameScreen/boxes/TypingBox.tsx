@@ -33,13 +33,13 @@ export default function TypingBox(props: TypingBoxProps) {
         max="100"
       ></progress>
 
-      <p className="text-gray-500 uppercase inline-block">
+      <pre className="text-gray-500 uppercase inline-block">
         {lyrics[currentLyricsRow + 1]?.lyric ?? ""}&nbsp;
-      </p>
+      </pre>
 
-      <p className="uppercase relative prose inline-block">
+      <div className="uppercase relative prose inline-block flex flex-row">
         {currentLyric.lyric.split("").map((char, idx) => (
-          <span
+          <pre
             key={"orig-" + idx}
             className={clsx(
               progress.length <= idx
@@ -50,15 +50,15 @@ export default function TypingBox(props: TypingBoxProps) {
             )}
           >
             {char}
-          </span>
+          </pre>
         ))}
         {progress
           .slice(currentLyric.lyric.length)
           .split("")
           .map((char, idx) => (
-            <span key={"excess-" + idx} className="text-red-500">
+            <pre key={"excess-" + idx} className="text-red-500">
               {char}
-            </span>
+            </pre>
           ))}
         <span
           className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
@@ -67,7 +67,7 @@ export default function TypingBox(props: TypingBoxProps) {
           }}
         />
         &nbsp;
-      </p>
+      </div>
     </div>
   );
 }
