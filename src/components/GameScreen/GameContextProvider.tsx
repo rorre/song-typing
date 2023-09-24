@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GameContext } from "./GameContext";
+import { GameContext, Performance } from "./GameContext";
 import { LyricData, Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
 
@@ -15,6 +15,12 @@ export default function GameContextProvider({
   const [score, setScore] = useState(0);
   const [currentLyricsRow, setLyricsRow] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+  const [performance, setPerformance] = useState<Performance>({
+    bestCombo: 0,
+    combo: 0,
+    cpm: 0,
+    misses: 0,
+  });
   const { audio, playing, toggle } = useAudio(song.src);
   const lyrics: LyricData[] = song.lyrics;
 
@@ -29,6 +35,13 @@ export default function GameContextProvider({
     setScore((curr) => curr + delta);
   }
 
+  function updatePerformance(newPerformance: Partial<Performance>) {
+    setPerformance({
+      ...performance,
+      ...newPerformance,
+    });
+  }
+
   return (
     <GameContext.Provider
       value={{
@@ -40,6 +53,8 @@ export default function GameContextProvider({
         currentTime,
         isPlaying: playing,
         incrementScore,
+        performance,
+        updatePerformance,
       }}
     >
       {children}

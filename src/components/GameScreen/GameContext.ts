@@ -1,6 +1,13 @@
 import { createContext, useContext } from "react";
 import { Song } from "../../types";
 
+export interface Performance {
+  bestCombo: number;
+  combo: number;
+  misses: number;
+  cpm: number;
+}
+
 export interface GameData {
   audio: HTMLAudioElement;
   song: Song;
@@ -10,6 +17,13 @@ export interface GameData {
   isPlaying: boolean;
   togglePlaying: () => void;
   incrementScore: (delta: number) => void;
+  performance: {
+    bestCombo: number;
+    combo: number;
+    misses: number;
+    cpm: number;
+  };
+  updatePerformance: (performance: Partial<Performance>) => void;
 }
 
 export const GameContext = createContext<GameData>({
@@ -26,6 +40,13 @@ export const GameContext = createContext<GameData>({
   isPlaying: false,
   togglePlaying: () => null,
   incrementScore: () => null,
+  performance: {
+    bestCombo: 0,
+    combo: 0,
+    misses: 0,
+    cpm: 0,
+  },
+  updatePerformance: () => null,
 });
 
 export const useGameContext = () => useContext(GameContext);

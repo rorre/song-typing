@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGameContext } from "./GameContext";
 import { useEventListener, useOnDepsChange } from "../../hooks";
 import clsx from "clsx";
@@ -16,6 +16,8 @@ export default function Playfield() {
     currentTime,
     incrementScore,
     isPlaying,
+    performance,
+    updatePerformance,
   } = useGameContext();
   const [volume, setVolume] = useState(100);
   const [progress, setProgress] = useState("");
@@ -46,6 +48,22 @@ export default function Playfield() {
     if (currentLyric.lyric.charAt(progress.length + 1) == " ") {
       key = key + " ";
     }
+
+    if (currentLyric.lyric.charAt(progress.length) == key.charAt(0)) {
+      updatePerformance({
+        combo: performance.combo + 1,
+      });
+    } else {
+      const bestCombo =
+        performance.bestCombo > performance.combo
+          ? performance.bestCombo
+          : performance.combo;
+      updatePerformance({
+        misses: performance.misses + 1,
+        bestCombo,
+        combo: 0,
+      });
+    }
     setProgress((current) => current + key.toLowerCase());
   });
 
@@ -53,15 +71,32 @@ export default function Playfield() {
     const prevLyric = lyrics[currentLyricsRow - 1];
     if (!isPlaying || prevLyric.ignore) return;
 
+    const prevTimeRange = prevLyric.endTime - prevLyric.startTime;
     const rowScore = calculateScore(
       prevLyric.lyric,
       progress,
       (finishTime > 0 ? finishTime : prevLyric.endTime) - prevLyric.endTime,
-      prevLyric.endTime - prevLyric.startTime
+      prevTimeRange
     );
     incrementScore(rowScore);
     setProgress("");
     setFinishTime(0);
+
+    const writtenChars = prevLyric.lyric
+      .split("")
+      .map((char, idx) =>
+        idx >= progress.length
+          ? 0
+          : progress.charAt(idx).toLowerCase() == char.toLowerCase()
+          ? 1
+          : 0.5
+      )
+      .reduce((p, c) => p + c, 0 as number);
+
+    console.log(writtenChars);
+    updatePerformance({
+      cpm: Math.round((writtenChars / prevTimeRange) * 1000 * 60),
+    });
   }, [currentLyricsRow]);
 
   useEffect(() => {
@@ -77,12 +112,9 @@ export default function Playfield() {
     audio.volume = volume / 100;
   }, [audio, volume]);
 
-  const timeRange = useMemo(
-    () => currentLyric.endTime - currentLyric.startTime,
-    [currentLyric]
-  );
-
   const songProgress = (currentTime / (audio.duration * 1000)) * 100;
+
+  const timeRange = currentLyric.endTime - currentLyric.startTime;
   const rowProgressPercent =
     ((currentTime - currentLyric.startTime) / timeRange) * 100;
   return (
@@ -111,6 +143,7 @@ export default function Playfield() {
         <p className="uppercase relative">
           {currentLyric.lyric.split("").map((char, idx) => (
             <span
+              key={"orig-" + idx}
               className={clsx(
                 progress.length <= idx
                   ? "text-white"
@@ -125,17 +158,45 @@ export default function Playfield() {
           {progress
             .slice(currentLyric.lyric.length)
             .split("")
-            .map((char) => (
-              <span className="text-red-500">{char}</span>
+            .map((char, idx) => (
+              <span key={"excess-" + idx} className="text-red-500">
+                {char}
+              </span>
             ))}
 
-          <div
+          <span
             className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
             style={{
               left: progress.length * fontWidth + "px",
             }}
           />
         </p>
+      </div>
+
+      <div className="grid grid-cols-4 gap-4 w-full">
+        <div className="flex flex-col">
+          <strong className="text-xl">{performance.combo}</strong>
+          <div className="divider m-0"></div>
+          <span className="text-sm">Combo</span>
+        </div>
+
+        <div className="flex flex-col">
+          <strong className="text-xl">{performance.bestCombo}</strong>
+          <div className="divider m-0"></div>
+          <span className="text-sm">Best Combo</span>
+        </div>
+
+        <div className="flex flex-col">
+          <strong className="text-xl">{performance.misses}</strong>
+          <div className="divider m-0"></div>
+          <span className="text-sm">Misses</span>
+        </div>
+
+        <div className="flex flex-col">
+          <strong className="text-xl">{performance.cpm}</strong>
+          <div className="divider m-0"></div>
+          <span className="text-sm">CPM</span>
+        </div>
       </div>
 
       <div className="flex flex-col w-full justify-between gap-4 pt-4">
