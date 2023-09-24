@@ -2,16 +2,11 @@ import React, { useCallback, useState } from "react";
 import { GameContext, Performance } from "./GameContext";
 import { LyricData, Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
+import Playfield from "./Playfield";
 
 const OFFSET = 200;
 
-export default function GameContextProvider({
-  song,
-  children,
-}: {
-  song: Song;
-  children: React.ReactNode;
-}) {
+export default function GameScreen({ song }: { song: Song }) {
   const [score, setScore] = useState(0);
   const [currentLyricsRow, setLyricsRow] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -60,7 +55,7 @@ export default function GameContextProvider({
         updatePerformance,
       }}
     >
-      {children}
+      <Playfield />
     </GameContext.Provider>
   );
 }

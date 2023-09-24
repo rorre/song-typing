@@ -1,7 +1,6 @@
 import { Route } from "@tanstack/react-router";
 import { rootRoute } from "./root";
-import GameContextProvider from "../components/GameScreen/GameContextProvider";
-import Playfield from "../components/GameScreen/Playfield";
+import GameScreen from "../components/GameScreen/GameScreen";
 import { fakedb } from "../constants";
 
 export const playRoute = new Route({
@@ -14,10 +13,6 @@ export const playRoute = new Route({
   component: ({ useLoader }) => {
     const song = useLoader();
 
-    return (
-      <GameContextProvider song={song}>
-        <Playfield />
-      </GameContextProvider>
-    );
+    return <GameScreen song={song} />;
   },
 });
