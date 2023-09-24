@@ -82,7 +82,8 @@ export default function Playfield() {
     [currentLyric]
   );
 
-  const progressPercent =
+  const songProgress = (currentTime / (audio.duration * 1000)) * 100;
+  const rowProgressPercent =
     ((currentTime - currentLyric.startTime) / timeRange) * 100;
   return (
     <div className="container max-w-4xl mx-auto flex flex-col items-center justify-center h-screen select-none gap-2">
@@ -94,10 +95,12 @@ export default function Playfield() {
         <strong>{score}</strong>
       </div>
 
+      <progress className="progress" value={songProgress} max="100"></progress>
+
       <div className="border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-mono relative">
         <progress
           className="progress"
-          value={progressPercent}
+          value={rowProgressPercent}
           max="100"
         ></progress>
 
