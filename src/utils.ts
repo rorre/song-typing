@@ -15,9 +15,9 @@ export function calculateScore(
     )
     .reduce((p, c) => p + c, 0 as number);
 
-  return (
-    rowScore +
-    (timeLeft / timeRange) * 5 * expected.length -
-    5 * (written.length - expected.length)
-  );
+  let score = rowScore + (timeLeft / timeRange) * 5 * expected.length;
+  if (written.length > expected.length) {
+    score -= 5 * (written.length - expected.length);
+  }
+  return score;
 }
