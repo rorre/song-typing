@@ -3,7 +3,8 @@ import { Song } from "./types";
 export const CONFLICT: Song = {
   artist: "siromaru + cranky",
   title: "conflict",
-  src: "/conflict.mp3",
+  src: "/conflict/conflict.mp3",
+  cover: "/conflict/cover.jpg",
   difficulty: 10,
   lyrics: [
     {
@@ -61,6 +62,241 @@ export const CONFLICT: Song = {
       startTime: 35796,
       endTime: 38986,
       lyric: "Nyam raika rit skuois trapa tof",
+    },
+
+    {
+      startTime: 62329,
+      endTime: 62986,
+      lyric: "Ti pyar",
+    },
+    {
+      startTime: 62986,
+      endTime: 63736,
+      lyric: "vie",
+    },
+    {
+      startTime: 63736,
+      endTime: 64486,
+      lyric: "iyad",
+    },
+    {
+      startTime: 64486,
+      endTime: 65236,
+      lyric: "ra",
+    },
+    {
+      startTime: 65236,
+      endTime: 65986,
+      lyric: "che",
+    },
+    {
+      startTime: 65986,
+      endTime: 66736,
+      lyric: "uf",
+    },
+    {
+      startTime: 66736,
+      endTime: 67486,
+      lyric: "kro",
+    },
+    {
+      startTime: 67486,
+      endTime: 68236,
+      lyric: "sho",
+    },
+
+    {
+      startTime: 68236,
+      endTime: 68986,
+      lyric: "",
+    },
+    {
+      startTime: 68986,
+      endTime: 69736,
+      lyric: "rat",
+    },
+    {
+      startTime: 69736,
+      endTime: 70486,
+      lyric: "dava",
+    },
+    {
+      startTime: 70486,
+      endTime: 71236,
+      lyric: "rof",
+    },
+    {
+      startTime: 71236,
+      endTime: 71986,
+      lyric: "nii",
+    },
+    {
+      startTime: 71986,
+      endTime: 72736,
+      lyric: "proti",
+    },
+    {
+      startTime: 72736,
+      endTime: 73486,
+      lyric: "ei",
+    },
+    {
+      startTime: 73486,
+      endTime: 74236,
+      lyric: "kof",
+    },
+    {
+      startTime: 74236,
+      endTime: 74986,
+      lyric: "",
+    },
+
+    {
+      startTime: 74986,
+      endTime: 75736,
+      lyric: "ryuv",
+    },
+    {
+      startTime: 75736,
+      endTime: 76486,
+      lyric: "voshu",
+    },
+    {
+      startTime: 76486,
+      endTime: 77236,
+      lyric: "to",
+    },
+    {
+      startTime: 77236,
+      endTime: 77986,
+      lyric: "ryaba",
+    },
+    {
+      startTime: 77986,
+      endTime: 78736,
+      lyric: "ya kat",
+    },
+    {
+      startTime: 78736,
+      endTime: 79486,
+      lyric: "kosu",
+    },
+    {
+      startTime: 79486,
+      endTime: 80236,
+      lyric: "is",
+    },
+    {
+      startTime: 80236,
+      endTime: 80986,
+      lyric: "",
+    },
+    {
+      startTime: 80986,
+      endTime: 81736,
+      lyric: "vi",
+    },
+    {
+      startTime: 81736,
+      endTime: 82486,
+      lyric: "rien",
+    },
+    {
+      startTime: 82486,
+      endTime: 83236,
+      lyric: "tsen",
+    },
+    {
+      startTime: 83236,
+      endTime: 83986,
+      lyric: "yu",
+    },
+    {
+      startTime: 83986,
+      endTime: 84736,
+      lyric: "hies",
+    },
+    {
+      startTime: 84736,
+      endTime: 85486,
+      lyric: "taha",
+    },
+    {
+      startTime: 85486,
+      endTime: 86236,
+      lyric: "chies",
+    },
+    {
+      startTime: 86236,
+      endTime: 86986,
+      lyric: "ni ien",
+    },
+    {
+      startTime: 86986,
+      endTime: 89986,
+      lyric: "fru",
+    },
+
+    {
+      startTime: 98236,
+      endTime: 101611,
+      lyric: "A man born to fight",
+    },
+    {
+      startTime: 101611,
+      endTime: 105736,
+      lyric: "An enemy bent on conquest",
+    },
+    {
+      startTime: 105736,
+      endTime: 108267,
+      lyric: "Let battle commence",
+    },
+
+    {
+      startTime: 118111,
+      endTime: 121486,
+      lyric: "Zuorhi viyantas was festsu ruor proi",
+    },
+    {
+      startTime: 121486,
+      endTime: 124486,
+      lyric: "Yuk dalfe suoivo swenne yat vu henvi nes",
+    },
+    {
+      startTime: 124486,
+      endTime: 127486,
+      lyric: "Sho fu briyu praffi stassui tsenva chies",
+    },
+    {
+      startTime: 127486,
+      endTime: 130486,
+      lyric: "Ien ryus sois nyat pyaro shennie fru",
+    },
+    {
+      startTime: 130486,
+      endTime: 133486,
+      lyric: "Prasueno turoden shes vi hyu vu praviya",
+    },
+    {
+      startTime: 133486,
+      endTime: 136486,
+      lyric: "Tyu prostes fis hien hesnie ryanmie proshuka",
+    },
+    {
+      startTime: 136486,
+      endTime: 139671,
+      lyric: "Wi swen ryasta grouts froine shienhie var yat",
+    },
+    {
+      startTime: 139861,
+      endTime: 141361,
+      lyric: "nyam raika rit skuois",
+    },
+    {
+      startTime: 141361,
+      endTime: 147361,
+      lyric: "iyaf ties fika prafa trapa tof",
     },
   ],
 };
