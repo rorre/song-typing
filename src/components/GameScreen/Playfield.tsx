@@ -60,6 +60,7 @@ export default function Playfield() {
     );
     incrementScore(rowScore);
     setProgress("");
+    setFinishTime(0);
   }, [currentLyricsRow]);
 
   useEffect(() => {
