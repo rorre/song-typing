@@ -3,6 +3,7 @@ import { useGameContext } from "./GameContext";
 import { useEventListener, useOnDepsChange } from "../../hooks";
 import clsx from "clsx";
 import { calculateScore } from "../../utils";
+import { Link } from "@tanstack/react-router";
 
 const fontWidth = 13.2;
 export default function Playfield() {
@@ -85,8 +86,11 @@ export default function Playfield() {
     ((currentTime - currentLyric.startTime) / timeRange) * 100;
   return (
     <div className="container max-w-4xl mx-auto flex flex-col items-center justify-center h-screen select-none gap-2">
+      <strong className="self-start">{song}</strong>
       <div className="flex flex-row justify-between w-full">
-        <strong>{song}</strong>
+        <strong>
+          {currentLyricsRow + 1}/{lyrics.length}
+        </strong>
         <strong>{score}</strong>
       </div>
 
@@ -131,7 +135,7 @@ export default function Playfield() {
         </p>
       </div>
 
-      <div className="flex flex-col w-full justify-between gap-4">
+      <div className="flex flex-col w-full justify-between gap-4 pt-4">
         <div className="flex flex-row gap-4">
           <p>Volume</p>
           <input
@@ -145,12 +149,20 @@ export default function Playfield() {
           <span>{volume}%</span>
         </div>
 
-        <button
-          className={clsx("btn", isPlaying ? "btn-secondary" : "btn-primary")}
-          onClick={() => togglePlaying()}
-        >
-          {isPlaying ? "Pause" : "Start"}
-        </button>
+        <div className="flex flex-row gap-4 items-stretch w-full">
+          <Link href="/" className="flex-1">
+            <button className="btn btn-error w-full">Exit</button>
+          </Link>
+          <button
+            className={clsx(
+              "btn flex-1",
+              isPlaying ? "btn-secondary" : "btn-primary"
+            )}
+            onClick={() => togglePlaying()}
+          >
+            {isPlaying ? "Pause" : "Start"}
+          </button>
+        </div>
       </div>
     </div>
   );
