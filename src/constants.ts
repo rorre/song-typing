@@ -3,6 +3,7 @@ import { Song } from "./types";
 export const CONFLICT: Song = {
   song: "siromaru + cranky - conflict",
   src: "/conflict.mp3",
+  difficulty: 10,
   lyrics: [
     {
       startTime: 0,
@@ -66,6 +67,7 @@ export const CONFLICT: Song = {
 export const LAGTRAIN: Song = {
   song: "inabakumori - Lagtrain",
   src: "/lagtrain.mp3",
+  difficulty: 8,
   lyrics: [
     {
       startTime: 3333,

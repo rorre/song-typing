@@ -5,8 +5,12 @@ export interface LyricData {
   ignore?: boolean;
 }
 
-export interface Song {
+export interface Metadata {
   song: string;
-  lyrics: LyricData[];
   src: string;
+  difficulty: number;
+}
+
+export interface Song extends Metadata {
+  lyrics: LyricData[];
 }

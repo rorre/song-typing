@@ -18,6 +18,7 @@ export const GameContext = createContext<GameData>({
     song: "None",
     lyrics: [],
     src: "",
+    difficulty: 0,
   },
   score: 0,
   currentLyricsRow: 0,
