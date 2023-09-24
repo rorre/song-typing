@@ -14,6 +14,7 @@ export const useAudio = (url: string) => {
     audio.addEventListener("ended", () => setPlaying(false));
     return () => {
       audio.removeEventListener("ended", () => setPlaying(false));
+      audio.remove();
     };
   }, [audio]);
 
