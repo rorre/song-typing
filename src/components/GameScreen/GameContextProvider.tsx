@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GameContext } from "./GameContext";
-import { LyricData, Song } from "../types";
-import { useAudio, useInterval } from "../hooks";
+import { LyricData, Song } from "../../types";
+import { useAudio, useInterval } from "../../hooks";
 
 const OFFSET = 200;
 

@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Song } from "../types";
+import { Song } from "../../types";
 
 export interface GameData {
   audio: HTMLAudioElement;

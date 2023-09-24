@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useGameContext } from "./GameContext";
-import { useEventListener, useOnDepsChange } from "../hooks";
+import { useEventListener, useOnDepsChange } from "../../hooks";
 import clsx from "clsx";
-import { calculateScore } from "../utils";
+import { calculateScore } from "../../utils";
 
 const fontWidth = 13.2;
 export default function Playfield() {

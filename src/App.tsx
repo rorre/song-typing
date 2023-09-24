@@ -1,5 +1,5 @@
-import GameContextProvider from "./components/GameContextProvider";
-import Playfield from "./components/Playfield";
+import GameContextProvider from "./components/GameScreen/GameContextProvider";
+import Playfield from "./components/GameScreen/Playfield";
 import { CONFLICT, LAGTRAIN } from "./constants";
 
 function App() {
