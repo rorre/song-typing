@@ -33,11 +33,11 @@ export default function TypingBox(props: TypingBoxProps) {
         max="100"
       ></progress>
 
-      <p className="text-gray-500 uppercase">
-        {lyrics[currentLyricsRow + 1]?.lyric ?? ""}
+      <p className="text-gray-500 uppercase inline-block">
+        {lyrics[currentLyricsRow + 1]?.lyric ?? ""}&nbsp;
       </p>
 
-      <p className="uppercase relative">
+      <p className="uppercase relative prose inline-block">
         {currentLyric.lyric.split("").map((char, idx) => (
           <span
             key={"orig-" + idx}
@@ -60,13 +60,13 @@ export default function TypingBox(props: TypingBoxProps) {
               {char}
             </span>
           ))}
-
         <span
           className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
           style={{
             left: progress.length * fontWidth + "px",
           }}
         />
+        &nbsp;
       </p>
     </div>
   );
