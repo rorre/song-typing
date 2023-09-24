@@ -63,7 +63,12 @@ export const CONFLICT: Song = {
       endTime: 38986,
       lyric: "Nyam raika rit skuois trapa tof",
     },
-
+    {
+      startTime: 38986,
+      endTime: 62329,
+      lyric: "",
+      ignore: true,
+    },
     {
       startTime: 62329,
       endTime: 62986,
@@ -109,6 +114,7 @@ export const CONFLICT: Song = {
       startTime: 68236,
       endTime: 68986,
       lyric: "",
+      ignore: true,
     },
     {
       startTime: 68986,
@@ -149,6 +155,7 @@ export const CONFLICT: Song = {
       startTime: 74236,
       endTime: 74986,
       lyric: "",
+      ignore: true,
     },
 
     {
@@ -236,7 +243,12 @@ export const CONFLICT: Song = {
       endTime: 89986,
       lyric: "fru",
     },
-
+    {
+      startTime: 89986,
+      endTime: 98236,
+      lyric: "",
+      ignore: true,
+    },
     {
       startTime: 98236,
       endTime: 101611,
@@ -251,6 +263,12 @@ export const CONFLICT: Song = {
       startTime: 105736,
       endTime: 108267,
       lyric: "Let battle commence",
+    },
+    {
+      startTime: 108267,
+      endTime: 118111,
+      lyric: "",
+      ignore: true,
     },
 
     {
@@ -304,7 +322,7 @@ export const CONFLICT: Song = {
 export const LAGTRAIN: Song = {
   artist: "inabakumori",
   title: "Lagtrain",
-  src: "/lagtrain.mp3",
+  src: "/lagtrain/lagtrain.mp3",
   difficulty: 8,
   lyrics: [
     {
