@@ -27,7 +27,7 @@ export default function Playfield() {
 
     e.preventDefault();
     if (!e.isTrusted) return;
-    if (currentLyric.ignore) return;
+    if (currentLyric.ignore || !isPlaying) return;
 
     if (key == "Backspace") {
       if (progress.charAt(progress.length - 1) == " ") {
