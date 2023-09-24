@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { GameContext, Performance } from "./GameContext";
 import { LyricData, Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
@@ -31,16 +31,19 @@ export default function GameContextProvider({
     }
   }, 50);
 
-  function incrementScore(delta: number) {
+  const incrementScore = useCallback((delta: number) => {
     setScore((curr) => curr + delta);
-  }
+  }, []);
 
-  function updatePerformance(newPerformance: Partial<Performance>) {
-    setPerformance({
-      ...performance,
-      ...newPerformance,
-    });
-  }
+  const updatePerformance = useCallback(
+    (newPerformance: Partial<Performance>) => {
+      setPerformance((performance) => ({
+        ...performance,
+        ...newPerformance,
+      }));
+    },
+    []
+  );
 
   return (
     <GameContext.Provider
