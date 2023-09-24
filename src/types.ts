@@ -8,6 +8,7 @@ export interface LyricData {
 export interface Metadata {
   artist: string;
   title: string;
+  cover?: string;
   src: string;
   difficulty: number;
 }

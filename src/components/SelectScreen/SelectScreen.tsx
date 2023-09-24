@@ -27,10 +27,17 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
           "No song selected"
         ) : (
           <>
-            <strong>
-              {selectedSong.artist} - {selectedSong.title}
-            </strong>
-            <span>Difficulty: {selectedSong.difficulty}</span>
+            <img
+              src={selectedSong.cover ?? "/music-placeholder.webp"}
+              className="w-full aspect-square"
+            />
+
+            <strong className="text-2xl">{selectedSong.title}</strong>
+            <p className="-mt-2">{selectedSong.artist}</p>
+            <div className="px-4 py-3 font-bold bg-base-100 rounded-md flex flex-row justify-between w-full">
+              <span>Difficulty</span>
+              <span>{selectedSong.difficulty}</span>
+            </div>
 
             <Link
               to="/play/$songId"

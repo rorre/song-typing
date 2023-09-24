@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # I don't want to get DMCA
-public/*.mp3
+public/**/*.mp3
