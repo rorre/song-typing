@@ -20,7 +20,7 @@ export const CONFLICT: Song = {
     },
     {
       startTime: 11986,
-      endTime: 13486,
+      endTime: 14236,
       lyric: "With a ruthless enemy",
     },
     {
@@ -174,22 +174,22 @@ export const CONFLICT: Song = {
     {
       startTime: 77986,
       endTime: 78736,
-      lyric: "ya kat",
+      lyric: "ya",
     },
     {
       startTime: 78736,
       endTime: 79486,
-      lyric: "kosu",
+      lyric: "kat",
     },
     {
       startTime: 79486,
       endTime: 80236,
-      lyric: "is",
+      lyric: "kosu",
     },
     {
       startTime: 80236,
       endTime: 80986,
-      lyric: "",
+      lyric: "is",
     },
     {
       startTime: 80986,
