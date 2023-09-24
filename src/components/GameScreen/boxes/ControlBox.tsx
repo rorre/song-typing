@@ -31,7 +31,7 @@ export default function ControlBox(props: React.HTMLProps<HTMLDivElement>) {
       </div>
 
       <div className="flex flex-row gap-4 items-stretch w-full">
-        <Link href="/" className="flex-1">
+        <Link to="/" className="flex-1">
           <button className="btn btn-error w-full">Exit</button>
         </Link>
         <button
