@@ -11,7 +11,7 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
       <div className="flex flex-col gap-2 w-full pt-4">
         {songs.map((song, idx) => (
           <div
-            className="p-4 rounded-r-lg bg-base-200"
+            className="p-4 rounded-r-lg bg-base-200 cursor-pointer"
             key={song.song}
             onClick={() => setSongId(idx)}
           >
