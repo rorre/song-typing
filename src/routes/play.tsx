@@ -2,9 +2,7 @@ import { Route } from "@tanstack/react-router";
 import { rootRoute } from "./root";
 import GameContextProvider from "../components/GameScreen/GameContextProvider";
 import Playfield from "../components/GameScreen/Playfield";
-import { CONFLICT, LAGTRAIN } from "../constants";
-
-const fakedb = [CONFLICT, LAGTRAIN];
+import { fakedb } from "../constants";
 
 export const playRoute = new Route({
   getParentRoute: () => rootRoute,
