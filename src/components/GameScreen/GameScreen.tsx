@@ -1,8 +1,9 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { GameContext, Performance } from "./GameContext";
-import { LyricData, Song } from "../../types";
+import { Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
 import Playfield from "./Playfield";
+import Result from "./Result";
 
 const OFFSET = 200;
 
@@ -17,14 +18,19 @@ export default function GameScreen({ song }: { song: Song }) {
     misses: 0,
   });
   const { audio, playing, toggle } = useAudio(song.src);
-  const lyrics: LyricData[] = song.lyrics;
 
-  useInterval(() => {
-    setCurrentTime(audio.currentTime * 1000 + OFFSET);
-    if (lyrics[currentLyricsRow].endTime < audio.currentTime * 1000 + OFFSET) {
-      setLyricsRow(currentLyricsRow + 1);
-    }
-  }, 50);
+  useInterval(
+    () => {
+      setCurrentTime(audio.currentTime * 1000 + OFFSET);
+      if (
+        song.lyrics[currentLyricsRow].endTime <
+        audio.currentTime * 1000 + OFFSET
+      ) {
+        setLyricsRow(currentLyricsRow + 1);
+      }
+    },
+    currentLyricsRow == song.lyrics.length ? null : 50
+  );
 
   const incrementScore = useCallback((delta: number) => {
     setScore((curr) => curr + delta);
@@ -55,7 +61,7 @@ export default function GameScreen({ song }: { song: Song }) {
         updatePerformance,
       }}
     >
-      <Playfield />
+      {currentLyricsRow < song.lyrics.length ? <Playfield /> : <Result />}
     </GameContext.Provider>
   );
 }
