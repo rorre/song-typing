@@ -19,5 +19,5 @@ export function calculateScore(
   if (written.length > expected.length) {
     score -= 5 * (written.length - expected.length);
   }
-  return score;
+  return Math.round(score);
 }
