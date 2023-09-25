@@ -42,7 +42,9 @@ export default function TypingBox(props: TypingBoxProps) {
           <pre
             key={"orig-" + idx}
             className={clsx(
-              progress.length <= idx
+              currentLyric.ignore
+                ? "text-gray-500"
+                : progress.length <= idx
                 ? "text-white"
                 : progress.charAt(idx).toLowerCase() == char.toLowerCase()
                 ? "text-gray-500"
