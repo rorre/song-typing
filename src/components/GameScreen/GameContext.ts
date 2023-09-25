@@ -13,7 +13,6 @@ export interface GameData {
   song: Song;
   score: number;
   currentLyricsRow: number;
-  currentTime: number;
   isPlaying: boolean;
   togglePlaying: () => void;
   incrementScore: (delta: number) => void;
@@ -24,6 +23,7 @@ export interface GameData {
     cpm: number;
   };
   updatePerformance: (performance: Partial<Performance>) => void;
+  listenTimeUpdate: (func: () => void) => void;
 }
 
 export const GameContext = createContext<GameData>({
@@ -37,7 +37,6 @@ export const GameContext = createContext<GameData>({
   },
   score: 0,
   currentLyricsRow: 0,
-  currentTime: 0,
   isPlaying: false,
   togglePlaying: () => null,
   incrementScore: () => null,
@@ -48,6 +47,7 @@ export const GameContext = createContext<GameData>({
     cpm: 0,
   },
   updatePerformance: () => null,
+  listenTimeUpdate: () => null,
 });
 
 export const useGameContext = () => useContext(GameContext);

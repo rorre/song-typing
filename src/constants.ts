@@ -1,5 +1,5 @@
 import { Song } from "./types";
-
+export const OFFSET = 200;
 export const CONFLICT: Song = {
   artist: "siromaru + cranky",
   title: "conflict",

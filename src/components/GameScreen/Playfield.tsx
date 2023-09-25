@@ -5,6 +5,7 @@ import { calculateScore } from "../../utils";
 import PerformanceBox from "./boxes/PerformanceBox";
 import ControlBox from "./boxes/ControlBox";
 import TypingBox from "./boxes/TypingBox";
+import AudioRelativeProgress from "./AudioRelativeProgress";
 
 export default function Playfield() {
   const {
@@ -12,7 +13,6 @@ export default function Playfield() {
     song: { artist, title, lyrics },
     score,
     currentLyricsRow,
-    currentTime,
     incrementScore,
     isPlaying,
     performance,
@@ -128,10 +128,9 @@ export default function Playfield() {
       .map(
         (char, idx) => progress.charAt(idx).toLowerCase() == char.toLowerCase()
       )
-      .every((x) => x == true) && setFinishTime(currentTime);
-  }, [progress, currentLyric, currentTime]);
+      .every((x) => x == true) && setFinishTime(audio.currentTime * 1000);
+  }, [progress, currentLyric, audio.currentTime]);
 
-  const songProgress = (currentTime / (audio.duration * 1000)) * 100;
   return (
     <div className="container max-w-4xl mx-auto flex flex-col items-center justify-center h-screen select-none gap-2">
       <strong className="self-start">
@@ -144,7 +143,7 @@ export default function Playfield() {
         <strong>{score}</strong>
       </div>
 
-      <progress className="progress" value={songProgress} max="100"></progress>
+      <AudioRelativeProgress baseTime={0} finalTime={audio.duration * 1000} />
 
       <TypingBox progress={progress} />
       <PerformanceBox />

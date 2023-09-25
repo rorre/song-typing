@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useGameContext } from "../GameContext";
+import AudioRelativeProgress from "../AudioRelativeProgress";
 
 interface TypingBoxProps extends React.HTMLProps<HTMLDivElement> {
   progress: string;
@@ -12,13 +13,9 @@ export default function TypingBox(props: TypingBoxProps) {
   const {
     song: { lyrics },
     currentLyricsRow,
-    currentTime,
   } = useGameContext();
 
   const currentLyric = lyrics[currentLyricsRow];
-  const timeRange = currentLyric.endTime - currentLyric.startTime;
-  const rowProgressPercent =
-    ((currentTime - currentLyric.startTime) / timeRange) * 100;
   return (
     <div
       className={clsx(
@@ -27,11 +24,10 @@ export default function TypingBox(props: TypingBoxProps) {
       )}
       {...rest}
     >
-      <progress
-        className="progress"
-        value={rowProgressPercent}
-        max="100"
-      ></progress>
+      <AudioRelativeProgress
+        baseTime={currentLyric.startTime}
+        finalTime={currentLyric.endTime}
+      />
 
       <pre className="text-gray-500 uppercase inline-block">
         {lyrics[currentLyricsRow + 1]?.lyric ?? ""}&nbsp;

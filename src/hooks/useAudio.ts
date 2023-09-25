@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useInterval } from ".";
 
 export const useAudio = (url: string) => {
   const [audio, setAudio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
+  const listeners = useRef<(() => void)[]>([]);
 
   const toggle = () => setPlaying(!playing);
 
@@ -14,6 +16,7 @@ export const useAudio = (url: string) => {
     audio.addEventListener("ended", () => setPlaying(false));
     return () => {
       audio.removeEventListener("ended", () => setPlaying(false));
+      audio.pause();
       audio.remove();
     };
   }, [audio]);
@@ -22,5 +25,14 @@ export const useAudio = (url: string) => {
     setAudio(new Audio(url));
   }, [url]);
 
-  return { audio, playing, toggle };
+  function listenTimeUpdate(func: () => void) {
+    audio.addEventListener("timeupdate", func);
+    listeners.current.push(func);
+  }
+
+  useInterval(() => {
+    listeners.current.forEach((listener) => listener());
+  }, 10);
+
+  return { audio, playing, toggle, listenTimeUpdate };
 };

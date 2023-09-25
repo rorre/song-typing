@@ -4,24 +4,21 @@ import { Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
 import Playfield from "./Playfield";
 import Result from "./Result";
-
-const OFFSET = 200;
+import { OFFSET } from "../../constants";
 
 export default function GameScreen({ song }: { song: Song }) {
   const [score, setScore] = useState(0);
   const [currentLyricsRow, setLyricsRow] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
   const [performance, setPerformance] = useState<Performance>({
     bestCombo: 0,
     combo: 0,
     cpm: 0,
     misses: 0,
   });
-  const { audio, playing, toggle } = useAudio(song.src);
+  const { audio, playing, toggle, listenTimeUpdate } = useAudio(song.src);
 
   useInterval(
     () => {
-      setCurrentTime(audio.currentTime * 1000 + OFFSET);
       if (
         song.lyrics[currentLyricsRow].endTime <
         audio.currentTime * 1000 + OFFSET
@@ -54,11 +51,11 @@ export default function GameScreen({ song }: { song: Song }) {
         currentLyricsRow,
         score,
         togglePlaying: toggle,
-        currentTime,
         isPlaying: playing,
         incrementScore,
         performance,
         updatePerformance,
+        listenTimeUpdate,
       }}
     >
       {currentLyricsRow < song.lyrics.length ? <Playfield /> : <Result />}
