@@ -6,7 +6,7 @@ interface TypingBoxProps extends React.HTMLProps<HTMLDivElement> {
   progress: string;
 }
 
-const fontWidth = 13.2;
+const fontWidth = 14.425;
 export default function TypingBox(props: TypingBoxProps) {
   const { className, progress, ...rest } = props;
   const {
@@ -22,7 +22,7 @@ export default function TypingBox(props: TypingBoxProps) {
   return (
     <div
       className={clsx(
-        "border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-mono relative",
+        "border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-roboto relative",
         className
       )}
       {...rest}
