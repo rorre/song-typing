@@ -25,3 +25,4 @@ dist-ssr
 
 # I don't want to get DMCA
 public/**/*.mp3
+src-tauri/songs
