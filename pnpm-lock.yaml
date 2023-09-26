@@ -8,6 +8,9 @@ dependencies:
   '@tanstack/react-router':
     specifier: 0.0.1-beta.191
     version: 0.0.1-beta.191(react-dom@18.2.0)(react@18.2.0)
+  '@tauri-apps/api':
+    specifier: ^1.4.0
+    version: 1.4.0
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
@@ -565,6 +568,11 @@ packages:
   /@tanstack/store@0.0.1:
     resolution: {integrity: sha512-Hq5mwC9oPD1HVRIsgxASYtJQAv5x7k42SMXBq2b/fMYrtMf7WMkOArOMs/ExoNED214Ql94Ft4zVWr0u2D6a6w==}
     engines: {node: '>=12'}
+    dev: false
+
+  /@tauri-apps/api@1.4.0:
+    resolution: {integrity: sha512-Jd6HPoTM1PZSFIzq7FB8VmMu3qSSyo/3lSwLpoapW+lQ41CL5Dow2KryLg+gyazA/58DRWI9vu/XpEeHK4uMdw==}
+    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
     dev: false
 
   /@tauri-apps/cli-darwin-arm64@1.4.0:
