@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Metadata } from "../../types";
 import { Link } from "@tanstack/react-router";
+import { convertFileSrc } from "@tauri-apps/api/tauri";
 
 export default function SelectScreen({ songs }: { songs: Metadata[] }) {
   const [songId, setSongId] = useState(-1);
@@ -28,7 +29,11 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
         ) : (
           <>
             <img
-              src={selectedSong.cover ?? "/music-placeholder.webp"}
+              src={
+                selectedSong.cover
+                  ? convertFileSrc(selectedSong.path + "/" + selectedSong.cover)
+                  : "/music-placeholder.webp"
+              }
               className="w-full aspect-square"
             />
 

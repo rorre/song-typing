@@ -15,15 +15,20 @@
       "all": false,
       "fs": {
         "all": true,
-        "scope": ["$RESOURCE/*"]
+        "scope": ["$RESOURCE/**/*"]
       },
       "path": {
         "all": true
+      },
+      "protocol": {
+        "all": false,
+        "asset": true,
+        "assetScope": ["$RESOURCE/**/*"]
       }
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
+      "category": "MusicGame",
       "copyright": "",
       "deb": {
         "depends": []
@@ -36,7 +41,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.rorre.songtyping",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -55,7 +60,7 @@
       }
     },
     "security": {
-      "csp": null
+      "csp": "default-src 'self' asset: https://asset.localhost; img-src 'self' asset: https://asset.localhost"
     },
     "updater": {
       "active": false

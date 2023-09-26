@@ -5,8 +5,10 @@ import { useAudio, useInterval } from "../../hooks";
 import Playfield from "./Playfield";
 import Result from "./Result";
 import { OFFSET } from "../../constants";
+import { convertFileSrc } from "@tauri-apps/api/tauri";
 
 export default function GameScreen({ song }: { song: Song }) {
+  console.log(song);
   const [score, setScore] = useState(0);
   const [currentLyricsRow, setLyricsRow] = useState(0);
   const [performance, setPerformance] = useState<Performance>({
@@ -15,7 +17,9 @@ export default function GameScreen({ song }: { song: Song }) {
     cpm: 0,
     misses: 0,
   });
-  const { audio, playing, toggle, listenTimeUpdate } = useAudio(song.src);
+  const { audio, playing, toggle, listenTimeUpdate } = useAudio(
+    convertFileSrc(song.path + "/" + song.src)
+  );
 
   useInterval(
     () => {

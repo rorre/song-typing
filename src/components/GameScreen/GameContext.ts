@@ -34,6 +34,7 @@ export const GameContext = createContext<GameData>({
     lyrics: [],
     src: "",
     difficulty: 0,
+    path: "",
   },
   score: 0,
   currentLyricsRow: 0,
