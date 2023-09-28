@@ -31,7 +31,8 @@ export default function Playfield() {
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       let key = e.key;
-      if (!key.match(/^[0-9a-z ]+$/) && key != "Backspace") return;
+      // eslint-disable-next-line no-useless-escape
+      if (!key.match(/^[0-9a-z \-]+$/) && key != "Backspace") return;
 
       e.preventDefault();
       if (!e.isTrusted) return;

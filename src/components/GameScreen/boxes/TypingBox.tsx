@@ -2,12 +2,12 @@ import clsx from "clsx";
 import React from "react";
 import { useGameContext } from "../GameContext";
 import AudioRelativeProgress from "../AudioRelativeProgress";
+import { FONT_WIDTH } from "../../../constants";
 
 interface TypingBoxProps extends React.HTMLProps<HTMLDivElement> {
   progress: string;
 }
 
-const fontWidth = 14.425;
 export default function TypingBox(props: TypingBoxProps) {
   const { className, progress, ...rest } = props;
   const {
@@ -19,7 +19,7 @@ export default function TypingBox(props: TypingBoxProps) {
   return (
     <div
       className={clsx(
-        "border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl font-roboto relative",
+        "border border-white p-4 w-full flex flex-col gap-2 overflow-hidden text-2xl relative",
         className
       )}
       {...rest}
@@ -29,7 +29,7 @@ export default function TypingBox(props: TypingBoxProps) {
         finalTime={currentLyric.endTime}
       />
 
-      <pre className="text-gray-500 uppercase inline-block">
+      <pre className="text-gray-500 uppercase inline-block font-roboto">
         {lyrics[currentLyricsRow + 1]?.lyric ?? ""}&nbsp;
       </pre>
 
@@ -38,6 +38,7 @@ export default function TypingBox(props: TypingBoxProps) {
           <pre
             key={"orig-" + idx}
             className={clsx(
+              "font-roboto",
               currentLyric.ignore
                 ? "text-gray-500"
                 : progress.length <= idx
@@ -54,7 +55,7 @@ export default function TypingBox(props: TypingBoxProps) {
         <span
           className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
           style={{
-            left: progress.length * fontWidth + "px",
+            left: progress.length * FONT_WIDTH + "px",
           }}
         />
         &nbsp;
