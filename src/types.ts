@@ -23,3 +23,9 @@ export const Song = Metadata.extend({
   lyrics: z.array(LyricData),
 });
 export type Song = z.infer<typeof Song>;
+
+export const Score = z.object({
+  id: z.string(),
+  score: z.number(),
+});
+export type Score = z.infer<typeof Score>;

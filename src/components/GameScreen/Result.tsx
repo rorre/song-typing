@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useGameContext } from "./GameContext";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { scoreManager } from "../../core/score";
 
 const GRADES: [number, string][] = [
   [130, "SS+"],
@@ -17,7 +18,7 @@ export default function Result() {
   const {
     performance,
     score,
-    song: { lyrics },
+    song: { id, lyrics },
   } = useGameContext();
 
   const maximumScore = useMemo(
@@ -27,6 +28,10 @@ export default function Result() {
         .reduce((prev, curr) => prev + curr, 0),
     [lyrics]
   );
+
+  useEffect(() => {
+    scoreManager.setScore(id, score);
+  }, [id, score]);
 
   const grade = GRADES.find((grade) => (score / maximumScore) * 100 > grade[0]);
   return (

@@ -5,12 +5,16 @@ import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { MdRefresh } from "react-icons/md";
 import { processSongsFolder } from "../../core/songs";
 import SettingsModal from "./SettingsModal";
+import { scoreManager } from "../../core/score";
 
 export default function SelectScreen({ songs }: { songs: Metadata[] }) {
   const [songId, setSongId] = useState(-1);
   const [isProcessing, setProcessing] = useState(false);
   const selectedSong = songId == -1 ? null : songs[songId];
   const router = useRouter();
+  const currentHighscore = selectedSong
+    ? scoreManager.getScore(selectedSong.id)
+    : null;
 
   async function onRefreshClicked() {
     setProcessing(true);
@@ -74,6 +78,11 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
             <div className="px-4 py-3 font-bold bg-base-100 rounded-md flex flex-row justify-between w-full">
               <span>Difficulty</span>
               <span>{selectedSong.difficulty}</span>
+            </div>
+
+            <div className="px-4 py-3 font-bold bg-base-100 rounded-md flex flex-row justify-between w-full">
+              <span>High score</span>
+              <span>{currentHighscore?.score ?? "None"}</span>
             </div>
 
             <Link
