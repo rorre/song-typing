@@ -11,10 +11,11 @@ export type LyricData = z.infer<typeof LyricData>;
 export const Metadata = z.object({
   artist: z.string(),
   title: z.string(),
-  cover: z.string().optional(),
+  cover: z.string(),
   src: z.string(),
   difficulty: z.number(),
   path: z.string(),
+  id: z.string(),
 });
 export type Metadata = z.infer<typeof Metadata>;
 

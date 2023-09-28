@@ -1,14 +1,14 @@
 import { Await, Route, defer } from "@tanstack/react-router";
 import { rootRoute } from "./root";
 import SelectScreen from "../components/SelectScreen/SelectScreen";
-import { processSongsFolder } from "../core/songs";
+import { getAllSongs } from "../core/songs";
 import { Suspense } from "react";
 
 export const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "/",
   loader: () => {
-    const songs = processSongsFolder();
+    const songs = getAllSongs();
     return {
       songs: defer(songs),
     };

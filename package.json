@@ -13,12 +13,16 @@
     "@tanstack/react-router": "0.0.1-beta.191",
     "@tauri-apps/api": "^1.4.0",
     "clsx": "^2.0.0",
+    "md5": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
+    "tauri-plugin-sql-api": "github:tauri-apps/tauri-plugin-sql#v1",
     "zod": "^3.22.2"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.4.0",
+    "@types/md5": "^2.3.3",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

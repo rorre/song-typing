@@ -29,12 +29,14 @@ export interface GameData {
 export const GameContext = createContext<GameData>({
   audio: null as unknown as HTMLAudioElement,
   song: {
+    id: "",
     artist: "",
     title: "",
     lyrics: [],
     src: "",
     difficulty: 0,
     path: "",
+    cover: "",
   },
   score: 0,
   currentLyricsRow: 0,
