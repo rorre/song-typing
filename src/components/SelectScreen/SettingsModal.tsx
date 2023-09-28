@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "../Modal";
 import { MdOutlineSettings } from "react-icons/md";
 import { useAtom } from "jotai";
