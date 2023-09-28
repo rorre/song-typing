@@ -8,7 +8,6 @@ import { OFFSET } from "../../constants";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
 
 export default function GameScreen({ song }: { song: Song }) {
-  console.log(song);
   const [score, setScore] = useState(0);
   const [currentLyricsRow, setLyricsRow] = useState(0);
   const [performance, setPerformance] = useState<Performance>({
