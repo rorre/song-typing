@@ -50,14 +50,7 @@ export default function TypingBox(props: TypingBoxProps) {
             {char}
           </pre>
         ))}
-        {progress
-          .slice(currentLyric.lyric.length)
-          .split("")
-          .map((char, idx) => (
-            <pre key={"excess-" + idx} className="text-red-500">
-              {char}
-            </pre>
-          ))}
+        {/* Cursor */}
         <span
           className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
           style={{

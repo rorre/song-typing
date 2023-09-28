@@ -47,6 +47,7 @@ export default function Playfield() {
         }
       }
 
+      if (progress.length >= currentLyric.lyric.length) return;
       if (key.length > 1) return;
       if (currentLyric.lyric.charAt(progress.length + 1) == " ") {
         key = key + " ";

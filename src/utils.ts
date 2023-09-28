@@ -15,9 +15,6 @@ export function calculateScore(
     )
     .reduce((p, c) => p + c, 0 as number);
 
-  let score = rowScore + (timeLeft / timeRange) * 5 * expected.length;
-  if (written.length > expected.length) {
-    score -= 5 * (written.length - expected.length);
-  }
+  const score = rowScore + (timeLeft / timeRange) * 5 * expected.length;
   return Math.round(score);
 }
