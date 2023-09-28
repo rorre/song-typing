@@ -99,7 +99,7 @@ export default function Playfield() {
     const rowScore = calculateScore(
       prevLyric.lyric,
       progress,
-      (finishTime > 0 ? finishTime : prevLyric.endTime) - prevLyric.endTime,
+      prevLyric.endTime - (finishTime > 0 ? finishTime : prevLyric.endTime),
       prevTimeRange
     );
     incrementScore(rowScore);
