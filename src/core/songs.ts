@@ -1,14 +1,17 @@
 import { readDir, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { resourceDir } from "@tauri-apps/api/path";
 import { Metadata } from "../types";
-import db, { DatabaseTable } from "./db";
+import { getDb, DatabaseTable } from "./db";
 import md5 from "md5";
 
 export async function getAllSongs() {
+  const db = await getDb();
   return await db.select<DatabaseTable<Metadata>[]>("SELECT * FROM songs");
 }
 
 export async function processSongsFolder() {
+  const db = await getDb();
+
   const baseDir = await resourceDir();
   const dirs = await readDir("songs", {
     dir: BaseDirectory.Resource,

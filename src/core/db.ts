@@ -3,9 +3,15 @@ import Database from "tauri-plugin-sql-api";
 export type DatabaseTable<T> = T & {
   id: number;
 };
-const db = await Database.load("sqlite:data.db");
+let db: Database | null = null;
+
+export async function getDb() {
+  if (!db) db = await Database.load("sqlite:data.db");
+  return db;
+}
 
 export async function migrate() {
+  const db = await getDb();
   try {
     // TODO: Migrate to higher version of DB
     await db.select<number>("SELECT version FROM metadata");
@@ -23,5 +29,3 @@ export async function migrate() {
     await db.execute("INSERT INTO metadata VALUES (1);");
   }
 }
-
-export default db;
