@@ -1,11 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useGameContext } from "../GameContext";
+import { volumeAtom } from "../../../core/settings";
+import { useAtom } from "jotai";
 
 export default function ControlBox(props: React.HTMLProps<HTMLDivElement>) {
   const { className, ...rest } = props;
-  const [volume, setVolume] = useState(100);
+  const [volume, setVolume] = useAtom(volumeAtom);
   const { audio, isPlaying, togglePlaying } = useGameContext();
 
   useEffect(() => {
