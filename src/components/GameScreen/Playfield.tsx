@@ -32,7 +32,7 @@ export default function Playfield() {
     (e: KeyboardEvent) => {
       let key = e.key;
       // eslint-disable-next-line no-useless-escape
-      if (!key.match(/^[0-9a-z \-]+$/) && key != "Backspace") return;
+      if (key.length > 1 && key != "Backspace" && key != "Space") return;
 
       e.preventDefault();
       if (!e.isTrusted) return;
@@ -55,7 +55,6 @@ export default function Playfield() {
       }
 
       if (progress.length >= currentLyric.lyric.length) return;
-      if (key.length > 1) return;
       if (
         currentLyric.lyric.charAt(progress.length + 1) == " " &&
         !enforceSpace
