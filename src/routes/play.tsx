@@ -14,6 +14,16 @@ export const playRoute = new Route({
     const lyrics = (
       JSON.parse(await readTextFile(song.path + "/lyrics.json")) as unknown[]
     ).map((data) => LyricData.parse(data));
+
+    // HACK: We cannot recalculate last line because after last line it will
+    //       remove the gameplay component, so we hack it by adding an empty
+    //       lyric line
+    lyrics.push({
+      startTime: lyrics[lyrics.length - 1].endTime,
+      endTime: lyrics[lyrics.length - 1].endTime,
+      lyric: "",
+      ignore: true,
+    });
     return {
       ...song,
       lyrics: lyrics,
