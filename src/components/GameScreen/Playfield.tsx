@@ -135,6 +135,8 @@ export default function Playfield() {
   useOnDepsChange(onRowChange, [currentLyricsRow]);
 
   useEffect(() => {
+    if (currentLyric.ignore) return;
+
     currentLyric.lyric
       .split("")
       .map(
