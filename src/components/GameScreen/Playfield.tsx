@@ -6,7 +6,8 @@ import PerformanceBox from "./boxes/PerformanceBox";
 import ControlBox from "./boxes/ControlBox";
 import TypingBox from "./boxes/TypingBox";
 import AudioRelativeProgress from "./AudioRelativeProgress";
-
+import { enforceSpaceAtom } from "../../core/settings";
+import { useAtom } from "jotai";
 export default function Playfield() {
   const {
     audio,
@@ -19,6 +20,7 @@ export default function Playfield() {
     updatePerformance,
   } = useGameContext();
 
+  const [enforceSpace] = useAtom(enforceSpaceAtom);
   const [progress, setProgress] = useState("");
   const [finishTime, setFinishTime] = useState(0);
   const currentLyric = useMemo(
@@ -29,7 +31,7 @@ export default function Playfield() {
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       let key = e.key;
-      if (!key.match(/^[0-9a-z]+$/) && key != "Backspace") return;
+      if (!key.match(/^[0-9a-z ]+$/) && key != "Backspace") return;
 
       e.preventDefault();
       if (!e.isTrusted) return;
@@ -47,9 +49,16 @@ export default function Playfield() {
         }
       }
 
+      if (key == "Space") {
+        key = " ";
+      }
+
       if (progress.length >= currentLyric.lyric.length) return;
       if (key.length > 1) return;
-      if (currentLyric.lyric.charAt(progress.length + 1) == " ") {
+      if (
+        currentLyric.lyric.charAt(progress.length + 1) == " " &&
+        !enforceSpace
+      ) {
         key = key + " ";
       }
 
@@ -78,6 +87,7 @@ export default function Playfield() {
       performance.misses,
       progress,
       updatePerformance,
+      enforceSpace,
     ]
   );
 

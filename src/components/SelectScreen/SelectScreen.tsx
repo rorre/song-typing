@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Metadata } from "../../types";
 import { Link, useRouter } from "@tanstack/react-router";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
-import { MdOutlineSettings, MdRefresh } from "react-icons/md";
+import { MdRefresh } from "react-icons/md";
 import { processSongsFolder } from "../../core/songs";
+import SettingsModal from "./SettingsModal";
 
 export default function SelectScreen({ songs }: { songs: Metadata[] }) {
   const [songId, setSongId] = useState(-1);
@@ -33,9 +34,7 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
     <div className="flex flex-row gap-8 h-screen">
       <div className="flex flex-col gap-2 w-full pt-4">
         <div className="flex flex-row justify-end gap-4">
-          <button className="rounded-full p-2 hover:bg-base-200">
-            <MdOutlineSettings size={24} />
-          </button>
+          <SettingsModal />
           <button
             className="rounded-full p-2 hover:bg-base-200"
             onClick={() => onRefreshClicked()}

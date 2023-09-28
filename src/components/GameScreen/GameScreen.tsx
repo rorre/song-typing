@@ -4,10 +4,12 @@ import { Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
 import Playfield from "./Playfield";
 import Result from "./Result";
-import { OFFSET } from "../../constants";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
+import { useAtom } from "jotai";
+import { offsetAtom } from "../../core/settings";
 
 export default function GameScreen({ song }: { song: Song }) {
+  const [offset] = useAtom(offsetAtom);
   const [score, setScore] = useState(0);
   const [currentLyricsRow, setLyricsRow] = useState(0);
   const [performance, setPerformance] = useState<Performance>({
@@ -23,8 +25,8 @@ export default function GameScreen({ song }: { song: Song }) {
   useInterval(
     () => {
       if (
-        song.lyrics[currentLyricsRow].endTime <
-        audio.currentTime * 1000 + OFFSET
+        song.lyrics[currentLyricsRow].endTime + offset <
+        audio.currentTime * 1000
       ) {
         setLyricsRow(currentLyricsRow + 1);
       }
