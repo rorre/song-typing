@@ -11,9 +11,13 @@ export const playRoute = new Route({
   loader: async ({ params: { songId } }) => {
     const songs = await getAllSongs();
     const song = songs[Number(songId)];
-    const lyrics = (
+    const lyricsOriginal = (
       JSON.parse(await readTextFile(song.path + "/lyrics.json")) as unknown[]
     ).map((data) => LyricData.parse(data));
+    const lyrics = lyricsOriginal.map((lyric) => ({
+      ...lyric,
+      lyric: lyric.lyric.toLowerCase(),
+    }));
 
     // HACK: We cannot recalculate last line because after last line it will
     //       remove the gameplay component, so we hack it by adding an empty
