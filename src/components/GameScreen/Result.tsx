@@ -30,7 +30,8 @@ export default function Result() {
   );
 
   useEffect(() => {
-    scoreManager.setScore(id, score);
+    if (score > (scoreManager.getScore(id)?.score ?? 0))
+      scoreManager.setScore(id, score);
   }, [id, score]);
 
   const grade = GRADES.find((grade) => (score / maximumScore) * 100 > grade[0]);
