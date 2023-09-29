@@ -1,8 +1,40 @@
 import { readDir, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
 import { resourceDir } from "@tauri-apps/api/path";
-import { Metadata } from "../types";
+import { LyricData, Metadata } from "../types";
 import { getDb, DatabaseTable } from "./db";
 import md5 from "md5";
+
+export async function getSong(songId: string) {
+  const db = await getDb();
+  const result = await db.select<Metadata[]>(
+    "SELECT * FROM songs WHERE id = $1",
+    [songId]
+  );
+
+  const song = result[0];
+  console.log(song);
+  const lyricsOriginal = (
+    JSON.parse(await readTextFile(song.path + "/lyrics.json")) as unknown[]
+  ).map((data) => LyricData.parse(data));
+  const lyrics = lyricsOriginal.map((lyric) => ({
+    ...lyric,
+    lyric: lyric.lyric.toLowerCase(),
+  }));
+
+  // HACK: We cannot recalculate last line because after last line it will
+  //       remove the gameplay component, so we hack it by adding an empty
+  //       lyric line
+  lyrics.push({
+    startTime: lyrics[lyrics.length - 1].endTime,
+    endTime: lyrics[lyrics.length - 1].endTime,
+    lyric: "",
+    ignore: true,
+  });
+  return {
+    ...song,
+    lyrics: lyrics,
+  };
+}
 
 export async function getAllSongs() {
   const db = await getDb();

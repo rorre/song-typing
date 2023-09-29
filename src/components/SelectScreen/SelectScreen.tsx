@@ -88,7 +88,7 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
             <Link
               to="/play/$songId"
               params={{
-                songId: songId.toString(),
+                songId: selectedSong.id,
               }}
               className="w-full mt-auto"
             >
