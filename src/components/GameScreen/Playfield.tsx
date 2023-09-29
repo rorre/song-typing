@@ -39,7 +39,7 @@ export default function Playfield() {
       if (currentLyric.ignore || !isPlaying) return;
 
       if (key == "Backspace") {
-        if (progress.charAt(progress.length - 1) == " ") {
+        if (progress.charAt(progress.length - 1) == " " && !enforceSpace) {
           return setProgress((progress) =>
             progress.slice(0, progress.length - 2)
           );
