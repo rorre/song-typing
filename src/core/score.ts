@@ -19,7 +19,10 @@ export class ScoreManager {
       score,
     });
 
-    Object.entries(JSON.stringify(Object.fromEntries(this._data)));
+    localStorage.setItem(
+      "scores",
+      JSON.stringify(Object.fromEntries(this._data))
+    );
     return;
   }
 }
