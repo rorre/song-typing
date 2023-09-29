@@ -45,7 +45,9 @@ export default function TypingBox(props: TypingBoxProps) {
                 ? "text-white"
                 : progress.charAt(idx).toLowerCase() == char.toLowerCase()
                 ? "text-gray-500"
-                : "text-red-500"
+                : char != " "
+                ? "text-red-500"
+                : "bg-red-500"
             )}
           >
             {char}
