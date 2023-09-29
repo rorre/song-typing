@@ -96,10 +96,11 @@ export default function Playfield() {
     if (!isPlaying || prevLyric.ignore) return;
 
     const prevTimeRange = prevLyric.endTime - prevLyric.startTime;
+    const timeTaken = finishTime > 0 ? finishTime : prevLyric.endTime;
     const rowScore = calculateScore(
       prevLyric.lyric,
       progress,
-      prevLyric.endTime - (finishTime > 0 ? finishTime : prevLyric.endTime),
+      prevLyric.endTime - timeTaken,
       prevTimeRange
     );
     incrementScore(rowScore);
@@ -118,7 +119,7 @@ export default function Playfield() {
       .reduce((p, c) => p + c, 0 as number);
 
     updatePerformance({
-      cpm: Math.round((writtenChars / prevTimeRange) * 1000 * 60),
+      cpm: Math.round((writtenChars / timeTaken) * 1000 * 60),
     });
   }, [
     currentLyricsRow,
