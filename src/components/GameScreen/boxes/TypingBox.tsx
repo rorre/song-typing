@@ -55,7 +55,7 @@ export default function TypingBox(props: TypingBoxProps) {
         ))}
         {/* Cursor */}
         <span
-          className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all top-1"
+          className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all duration-[100] top-1"
           style={{
             left: progress.length * FONT_WIDTH + "px",
           }}
