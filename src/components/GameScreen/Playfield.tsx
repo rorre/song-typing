@@ -62,19 +62,24 @@ export default function Playfield() {
         key = key + " ";
       }
 
+      const newCombo =
+        currentLyric.lyric.charAt(progress.length) == key.charAt(0)
+          ? performance.combo + 1
+          : 0;
+
+      const bestCombo =
+        performance.bestCombo > newCombo ? performance.bestCombo : newCombo;
+
       if (currentLyric.lyric.charAt(progress.length) == key.charAt(0)) {
         updatePerformance({
-          combo: performance.combo + 1,
+          combo: newCombo,
+          bestCombo,
         });
       } else {
-        const bestCombo =
-          performance.bestCombo > performance.combo
-            ? performance.bestCombo
-            : performance.combo;
         updatePerformance({
           misses: performance.misses + 1,
           bestCombo,
-          combo: 0,
+          combo: newCombo,
         });
       }
       setProgress((current) => current + key.toLowerCase());
