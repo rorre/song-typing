@@ -153,7 +153,7 @@ export default function Playfield() {
   }, [progress, currentLyric, audio.currentTime]);
 
   return (
-    <div className="container max-w-4xl mx-auto flex flex-col items-center justify-center h-screen select-none gap-2">
+    <div className="container max-w-4xl mx-auto flex flex-col items-center justify-center h-screen select-none gap-2 px-4">
       <strong className="self-start">
         {artist} - {title}
       </strong>

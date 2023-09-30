@@ -71,7 +71,9 @@
         "height": 600,
         "resizable": true,
         "title": "Song Typing",
-        "width": 800
+        "width": 800,
+        "minWidth": 800,
+        "minHeight": 600
       }
     ]
   }

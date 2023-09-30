@@ -59,7 +59,7 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
         ))}
       </div>
 
-      <div className="flex flex-col gap-4 p-4 bg-base-200 items-center text-center min-w-[24rem] w-1/4">
+      <div className="flex flex-col gap-4 p-4 bg-base-200 items-center text-center min-w-[20rem] w-1/4">
         {selectedSong == null ? (
           <span className="my-auto">No song selected</span>
         ) : (
