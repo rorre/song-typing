@@ -37,6 +37,12 @@ export default function ControlBox(props: React.HTMLProps<HTMLDivElement>) {
           <button className="btn btn-error w-full">Exit</button>
         </Link>
         <button
+          className={clsx("btn flex-1 btn-accent")}
+          onClick={() => window.location.reload()}
+        >
+          Retry
+        </button>
+        <button
           className={clsx(
             "btn flex-1",
             isPlaying ? "btn-secondary" : "btn-primary"
