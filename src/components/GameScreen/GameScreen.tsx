@@ -4,9 +4,9 @@ import { Song } from "../../types";
 import { useAudio, useInterval } from "../../hooks";
 import Playfield from "./Playfield";
 import Result from "./Result";
-import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { useAtom } from "jotai";
 import { offsetAtom } from "../../core/settings";
+import { convertSongsSrc } from "../../core/path";
 
 export default function GameScreen({ song }: { song: Song }) {
   const [offset] = useAtom(offsetAtom);
@@ -19,7 +19,7 @@ export default function GameScreen({ song }: { song: Song }) {
     misses: 0,
   });
   const { audio, playing, toggle, listenTimeUpdate } = useAudio(
-    convertFileSrc(song.path + "/" + song.src)
+    convertSongsSrc(song.path + "/" + song.src)
   );
 
   useInterval(

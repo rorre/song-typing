@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Metadata } from "../../types";
 import { Link, useRouter } from "@tanstack/react-router";
-import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { MdRefresh } from "react-icons/md";
 import { processSongsFolder } from "../../core/songs";
 import SettingsModal from "./SettingsModal";
 import { scoreManager } from "../../core/score";
+import { convertSongsSrc } from "../../core/path";
 
 export default function SelectScreen({ songs }: { songs: Metadata[] }) {
   const [songId, setSongId] = useState(-1);
@@ -67,7 +67,9 @@ export default function SelectScreen({ songs }: { songs: Metadata[] }) {
             <img
               src={
                 selectedSong.cover
-                  ? convertFileSrc(selectedSong.path + "/" + selectedSong.cover)
+                  ? convertSongsSrc(
+                      selectedSong.path + "/" + selectedSong.cover
+                    )
                   : "/music-placeholder.webp"
               }
               className="w-full aspect-square"

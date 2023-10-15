@@ -1,8 +1,8 @@
 import { readDir, BaseDirectory, readTextFile } from "@tauri-apps/api/fs";
-import { resourceDir } from "@tauri-apps/api/path";
 import { LyricData, Metadata } from "../types";
 import { getDb, DatabaseTable } from "./db";
 import md5 from "md5";
+import { normalizePath } from "./path";
 
 export async function getSong(songId: string) {
   const db = await getDb();
@@ -12,9 +12,12 @@ export async function getSong(songId: string) {
   );
 
   const song = result[0];
-  console.log(song);
   const lyricsOriginal = (
-    JSON.parse(await readTextFile(song.path + "/lyrics.json")) as unknown[]
+    JSON.parse(
+      await readTextFile(song.path + "/lyrics.json", {
+        dir: BaseDirectory.Resource,
+      })
+    ) as unknown[]
   ).map((data) => LyricData.parse(data));
   const lyrics = lyricsOriginal.map((lyric) => ({
     ...lyric,
@@ -43,8 +46,6 @@ export async function getAllSongs() {
 
 export async function processSongsFolder() {
   const db = await getDb();
-
-  const baseDir = await resourceDir();
   const dirs = await readDir("songs", {
     dir: BaseDirectory.Resource,
     recursive: true,
@@ -54,12 +55,12 @@ export async function processSongsFolder() {
   for (const entry of dirs) {
     if (!entry.children) continue;
     const songFile = entry.children.find((e) => e.name === "song.json");
-
-    // Windows fix, remove \\?\ prefix from FS
-    const songFolder = entry.path.replace(/\\\\\?\\/, "");
     if (!songFile) continue;
 
-    const jsonContent = await readTextFile(songFile.path.replace(baseDir, ""), {
+    const songFolder = await normalizePath(entry.path);
+    const songFilePath = await normalizePath(songFile.path);
+
+    const jsonContent = await readTextFile(songFilePath, {
       dir: BaseDirectory.Resource,
     });
     const data = Metadata.parse({
@@ -71,6 +72,7 @@ export async function processSongsFolder() {
     resolvedSongs.push(data);
   }
 
+  // TODO: Only update changed songs
   await db.execute("DELETE FROM songs;");
   // FIXME: Can be squished into 1 query!
   resolvedSongs.forEach(async (song) => {
