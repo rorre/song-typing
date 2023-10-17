@@ -3,6 +3,7 @@ import React from "react";
 import { useGameContext } from "../GameContext";
 import AudioRelativeProgress from "../AudioRelativeProgress";
 import { FONT_WIDTH } from "../../../constants";
+import { For } from "million/react";
 
 interface TypingBoxProps extends React.HTMLProps<HTMLDivElement> {
   progress: string;
@@ -33,26 +34,28 @@ export default function TypingBox(props: TypingBoxProps) {
         {lyrics[currentLyricsRow + 1]?.lyric ?? ""}&nbsp;
       </pre>
 
-      <div className="uppercase relative prose flex flex-row">
-        {currentLyric.lyric.split("").map((char, idx) => (
-          <pre
-            key={"orig-" + idx}
-            className={clsx(
-              "font-roboto",
-              currentLyric.ignore
-                ? "text-gray-500"
-                : progress.length <= idx
-                ? "text-white"
-                : progress.charAt(idx).toLowerCase() == char.toLowerCase()
-                ? "text-gray-500"
-                : char != " "
-                ? "text-red-500"
-                : "bg-red-500"
-            )}
-          >
-            {char}
-          </pre>
-        ))}
+      <div className="uppercase relative prose flex flex-row h-[1.75rem]">
+        <For each={currentLyric.lyric.split("")}>
+          {(char, idx) => (
+            <pre
+              key={"orig-" + idx}
+              className={clsx(
+                "font-roboto",
+                currentLyric.ignore
+                  ? "text-gray-500"
+                  : progress.length <= idx
+                  ? "text-white"
+                  : progress.charAt(idx).toLowerCase() == char.toLowerCase()
+                  ? "text-gray-500"
+                  : char != " "
+                  ? "text-red-500"
+                  : "bg-red-500"
+              )}
+            >
+              {char}
+            </pre>
+          )}
+        </For>
         {/* Cursor */}
         <span
           className="border-l-2 border-l-grey border-opacity-75 h-[1.75rem] absolute animate-pulse transition-all duration-[100] top-1"
@@ -60,7 +63,6 @@ export default function TypingBox(props: TypingBoxProps) {
             left: progress.length * FONT_WIDTH + "px",
           }}
         />
-        &nbsp;
       </div>
     </div>
   );
