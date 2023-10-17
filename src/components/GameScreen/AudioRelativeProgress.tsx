@@ -20,5 +20,11 @@ export default function AudioRelativeProgress({
   }, [listenTimeUpdate, audio]);
 
   const percent = ((currentTime - baseTime) / (finalTime - baseTime)) * 100;
-  return <progress className="progress" value={percent} max="100"></progress>;
+  return (
+    <progress
+      className="progress"
+      value={isNaN(percent) ? 0 : percent}
+      max="100"
+    ></progress>
+  );
 }
