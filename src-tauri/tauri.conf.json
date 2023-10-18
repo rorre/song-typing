@@ -15,7 +15,9 @@
       "all": false,
       "fs": {
         "all": true,
-        "scope": ["$RESOURCE/**/*"]
+        "scope": [
+          "$RESOURCE/**/*"
+        ]
       },
       "path": {
         "all": true
@@ -23,7 +25,9 @@
       "protocol": {
         "all": false,
         "asset": true,
-        "assetScope": ["$RESOURCE/**/*"]
+        "assetScope": [
+          "$RESOURCE/**/*"
+        ]
       }
     },
     "bundle": {
@@ -50,7 +54,9 @@
         "providerShortName": null,
         "signingIdentity": null
       },
-      "resources": ["songs/*"],
+      "resources": [
+        "songs/*"
+      ],
       "shortDescription": "",
       "targets": "all",
       "windows": {
@@ -60,7 +66,7 @@
       }
     },
     "security": {
-      "csp": "default-src 'self' asset: https://asset.localhost; img-src 'self' asset: https://asset.localhost"
+      "csp": "default-src 'self' asset: https://asset.localhost http://localhost:17270 https://fonts.gstatic.com; img-src 'self' asset: data: https://asset.localhost http://localhost:17270"
     },
     "updater": {
       "active": false
