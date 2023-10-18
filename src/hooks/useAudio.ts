@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useInterval } from ".";
 
+const nullAudio = new Audio();
 export const useAudio = (url: string) => {
-  const [audio, setAudio] = useState(new Audio(url));
+  const [audio, setAudio] = useState<HTMLAudioElement>(nullAudio);
   const [playing, setPlaying] = useState(false);
   const listeners = useRef<(() => void)[]>([]);
 
